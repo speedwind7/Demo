@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:映射器接口的全名 -->
+<mapper namespace="net.onest.server.dao.ProductMapper">
+
+	<!-- 结果映射 -->
+    <resultMap type="net.onest.server.entity.Product" id="productMap">
+        <id column="id" property="id"></id>
+        <result column="product_name" property="productName"/>
+        <result column="image" property="image"/>
+        <result column="price" property="price"/>
+    </resultMap>
+    
+    <!-- 映射select语句 -->
+    <select id="findAllProducts"  resultMap="productMap">
+           select * from product
+    </select>
+    <select id="findProduct" resultMap="productMap">
+    		select * from product where id=#{pid}
+    </select>
+</mapper>

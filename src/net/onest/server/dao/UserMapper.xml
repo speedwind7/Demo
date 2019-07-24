@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:映射器接口的全名 -->
+<mapper namespace="net.onest.server.dao.UserMapper">
+
+    <!-- 结果映射 -->
+    <resultMap type="net.onest.server.entity.User" id="userMap">
+        <id column="id" property="id"></id>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="password"/>
+    </resultMap>
+    
+    <!-- 映射select语句 -->
+    <select id="findAllUsers"  resultMap="userMap">
+           select * from user
+    </select>
+    
+    <select id="signon" resultMap="userMap">
+    	select * from user where user_name = #{userName} and password=#{password} 
+    </select>
+    <select id="signup" resultMap="userMap">
+    	select * from user where user_name = #{userName}
+    </select>
+    <insert id="insertUser">
+        insert into user(user_name,password)
+        values(#{userName},#{password})
+    </insert>
+</mapper>
